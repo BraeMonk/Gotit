@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media App</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- External Dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <!-- App Scripts -->
+    <script type="module" src="js/utils.js"></script>
+    <script type="module" src="js/frontendcomponents.js"></script>
+    <script type="module" src="js/frontendmain.js"></script>
+    <script type="module">
+		import React, { useState } from 'react';
+        import ReactDOM from 'react-dom';
+
+        // NavigationButton component for navigation
+        function NavigationButton({ name, onClick }) {
+            return (
+                <button onClick={onClick}>{name}</button>
+            );
+        }
+
+        // Main App component
+        function App() {
+            const [page, setPage] = useState('feed');
+
+            function navigateTo(page) {
+                setPage(page);
+            }
+
+            return (
+                <div>
+                    <header>
+                        <h1>Social Media App</h1>
+                        <NavigationButton name="Messages" onClick={() => navigateTo('messages')} />
+                    </header>
+                    <main>
+                        {page === 'feed' && <div>Feed Content</div>}
+                        {page === 'profile' && <div>Profile Content</div>}
+                        {page === 'explore' && <div>Explore Content</div>}
+                        {page === 'upload' && <div>Upload Content</div>}
+                        {page === 'messages' && <div>Messages Content</div>}
+                    </main>
+                    <footer>
+                        <NavigationButton name="Profile" onClick={() => navigateTo('profile')} />
+                        <NavigationButton name="Feed" onClick={() => navigateTo('feed')} />
+                        <NavigationButton name="Explore" onClick={() => navigateTo('explore')} />
+                        <NavigationButton name="Upload" onClick={() => navigateTo('upload')} />
+                    </footer>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
