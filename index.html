@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Social Media App</title>
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <!-- External CSS -->
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="styles.css">
     <!-- External Dependencies -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"></script>
+    <script src="react.production.min.js"></script>
+    <script src="react-dom.production.min.js"></script>
+    <script src="axios.min.js"></script>
+    <!-- Standalone CSS -->
     <style>
-        /* Example CSS for Responsive Design */
         body {
             font-family: Arial, sans-serif;
         }
@@ -33,11 +33,12 @@
 </head>
 <body>
     <div id="root"></div>
-    <!-- App Scripts -->
-    <script type="module">
-        import React, { useState } from 'react';
-        import ReactDOM from 'react-dom';
-
+    <!-- External JS -->
+    <script src="utils.js"></script>
+    <script src="frontendcomponents.js"></script>
+    <script src="frontendmain.js"></script>
+    <!-- Standalone JS -->
+    <script type="text/javascript">
         // NavigationButton component for navigation
         function NavigationButton({ name, onClick }) {
             return (
@@ -47,7 +48,7 @@
 
         // Main App component
         function App() {
-            const [page, setPage] = useState('feed');
+            const [page, setPage] = React.useState('feed');
 
             function navigateTo(page) {
                 setPage(page);
@@ -76,7 +77,7 @@
             );
         }
 
-        ReactDOM.render(<App />, document.getElementById('root'));
+        ReactDOM.render(React.createElement(App), document.getElementById('root'));
     </script>
 </body>
 </html>
